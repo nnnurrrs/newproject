@@ -7,7 +7,7 @@
   <packaging>war</packaging>
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.version>4.3.19.RELEASE</spring.version>
 		<spring.ws.version>2.0.0.RELEASE</spring.ws.version>
 		<coфntext.path>spring-webservice-api</coфntext.path>
   </properties>
