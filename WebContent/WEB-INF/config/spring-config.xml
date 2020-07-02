@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/web-services
+       http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+    <context:component-scan
+            base-package="kz.kazpost.webservices.newproject.service,kz.kazpost.webservices.newproject.endpoint,kz.kazpost.webservices.newproject.dao"/>
+    <sws:annotation-driven/>
+
+    <sws:interceptors>
+        <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+        <sws:payloadRoot namespaceUri="http://webservices.kazpost.kz/newproject/schema">
+            <bean id="validator1forUri1"
+                  class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+                <property name="schema" value="/schema/newproject.xsd"/>
+                <property name="validateRequest" value="true"/>
+                <property name="validateResponse" value="false"/>
+            </bean>
+        </sws:payloadRoot>
+    </sws:interceptors>
+
+    <bean class="org.springframework.ws.soap.server.endpoint.SoapFaultAnnotationExceptionResolver"/>
+
+
+    <!-- Our test service bean -->
+
+    <bean id="newproject" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema">
+            <bean
+                    class="org.springframework.xml.xsd.SimpleXsdSchema">
+                <property name="xsd" value="/schema/newproject.xsd"/>
+            </bean>
+        </property>
+        <property name="portTypeName" value="newproject"/>
+        <property name="serviceName" value="newproject"/>
+        <property name="locationUri" value="/endpoint"/>
+    </bean>
+
+</beans>

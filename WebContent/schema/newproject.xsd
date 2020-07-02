@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://webservices.kazpost.kz/newproject/schema"
+           elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://webservices.kazpost.kz/newproject/schema">
+
+    <xs:element name="EmployeeInfoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TNS_JDBC" minOccurs="0" maxOccurs="1" default="PREVDAY" type="xs:string"/>
+                <xs:element name="pId_iin" type="xs:int" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="p_dep_id" type="xs:int" maxOccurs="1" minOccurs="0"/>
+                <xs:element name="p_name" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="p_surname" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="p_department" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="p_prim" type="xs:string" maxOccurs="1" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="EmployeeInfoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:ResponseInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DelEmployeeInfoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TNS_JDBC" minOccurs="0" maxOccurs="1" default="PREVDAY" type="xs:string"/>
+                <xs:element name="p_iin" type="xs:int" maxOccurs="1" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DelEmployeeInfoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:ResponseInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ResponseInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ResponseGenTime" type="xs:dateTime" maxOccurs="1" minOccurs="0"/>
+                <xs:element name="ResponseCode" type="xs:string" maxOccurs="1" minOccurs="0"/>
+                <xs:element name="ResponseText" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
